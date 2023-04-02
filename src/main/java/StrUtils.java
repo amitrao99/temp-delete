@@ -1,5 +1,7 @@
-import java.nio.charset.Charset;
 import org.apache.commons.lang3.StringUtils;
+
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 public class StrUtils {
     public static void main(String[] args) {
@@ -20,7 +22,7 @@ public class StrUtils {
 
     public static String convertEBCDICToUTF8(String ebcdicString) {
         Charset ebcdicCharset = Charset.forName("IBM1047"); // EBCDIC charset
-        Charset utf8Charset = Charset.forName("UTF-8"); // UTF-8 charset
+        Charset utf8Charset = StandardCharsets.UTF_8; // UTF-8 charset
         byte[] ebcdicBytes = ebcdicString.getBytes(ebcdicCharset); // convert to EBCDIC bytes
         String utf8String = new String(ebcdicBytes, utf8Charset); // convert to UTF-8 string
         return utf8String;
