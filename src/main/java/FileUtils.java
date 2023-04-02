@@ -1,5 +1,9 @@
 import java.io.*;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
 
 public class FileUtils {
     public static void main(String[] args) {}
@@ -27,5 +31,25 @@ public class FileUtils {
 
     public static String convertByteArrayToString(byte[] byteArray, Charset charset) {
         return new String(byteArray, charset);
+    }
+
+    public static boolean areFilesEqual(String filePath1, String filePath2) throws Exception {
+
+        Path path1 = Paths.get(filePath1);
+        Path path2 = Paths.get(filePath2);
+
+        byte[] file1Bytes = Files.readAllBytes(path1);
+        byte[] file2Bytes = Files.readAllBytes(path2);
+
+        if (Arrays.equals(file1Bytes, file2Bytes)) {
+            return true;
+        } else {
+            System.out.println("Files are different:");
+            System.out.println("File 1:");
+            System.out.println(new String(file1Bytes));
+            System.out.println("File 2:");
+            System.out.println(new String(file2Bytes));
+            return false;
+        }
     }
 }
